@@ -22,6 +22,16 @@ public class PruebaController {
         return this.escuelaService.listarEscuelas();
     }
 
+    @GetMapping("/buscarEscuelaByCodigo")
+    public Escuela buscarEscuelaByCodigo(@RequestParam String codigo){
+        return this.escuelaService.obtenerEscuelPorCodigo(codigo);
+    }
+
+    @GetMapping("/buscarEscuelaByIdAndDenominacion")
+    public Escuela buscarEscuelaByIdAndDenominacion(@RequestParam Long idescuela,@RequestParam String nombre){
+        return this.escuelaService.buscarEscuelaByIdAndDenominacion(idescuela,nombre);
+    }
+
     @GetMapping("/saludo")
     public String saludo(){
         return "Hola amig@s desde Ayacucho - perú";
