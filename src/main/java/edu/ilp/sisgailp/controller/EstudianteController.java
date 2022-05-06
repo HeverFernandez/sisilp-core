@@ -2,16 +2,19 @@ package edu.ilp.sisgailp.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.ilp.sisgailp.entity.Escuela;
 import edu.ilp.sisgailp.entity.Estudiante;
 import edu.ilp.sisgailp.service.IEstudianteService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("estudiante")
 public class EstudianteController {
 
     @Autowired
@@ -26,7 +29,20 @@ public class EstudianteController {
         Estudiante estudiante = this.objectMapper.readValue(jsonEstudiante, Estudiante.class);
 
         this.estudianteService.guardarEstudiante(estudiante);
-        
+
         return "El estudiante se registró correctamente";
+    }
+
+    @GetMapping("/lista")
+    public List<Estudiante> listaEstudiantes(@RequestParam Escuela idescuela){
+        return this.estudianteService.listaEstudiantes(idescuela);
+    }
+
+    @GetMapping("/listaPage")
+    public Page<Estudiante> listaEstudiantesPage(@RequestParam Escuela idescuela, @RequestParam int pagina){
+
+        Pageable page = PageRequest.of(pagina,2);
+
+        return this.estudianteService.listaEstudianteByPagina(page,idescuela);
     }
 }
