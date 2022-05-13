@@ -23,4 +23,9 @@ public interface IEstudianteService {
 
     //Obtener estudiante a travéz de su código ó dni
     Estudiante obtenerEstudiante(String coddni);
+
+    //Obtener estudiante mediante su nombre o apellido
+    List<Estudiante> listarEstudiantePorApeNombre(String apenombre);
+
+    //Actualizar registro de estudiantes
 }

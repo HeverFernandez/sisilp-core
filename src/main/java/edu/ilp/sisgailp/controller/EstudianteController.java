@@ -56,4 +56,18 @@ public class EstudianteController {
     public Estudiante buscarEstudiante(@PathVariable String coddni){
         return this.estudianteService.obtenerEstudiante(coddni);
     }
+
+    @GetMapping("/listarByAppnombre/{appnombre}")
+    public List<Estudiante> listarPorApellidoNombre(@PathVariable String appnombre){
+        return this.estudianteService.listarEstudiantePorApeNombre(appnombre);
+    }
+
+    @PutMapping("/actualizar")
+    public String actualizarEstudiante(@RequestBody String jsonEstudiante) throws JsonProcessingException {
+
+        Estudiante estudiante = this.objectMapper.readValue(jsonEstudiante, Estudiante.class);
+        this.estudianteService.guardarEstudiante(estudiante);
+
+        return "Datos del estudiante se actualizó correctamente";
+    }
 }

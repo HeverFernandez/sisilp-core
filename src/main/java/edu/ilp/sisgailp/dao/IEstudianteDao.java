@@ -22,4 +22,8 @@ public interface IEstudianteDao extends JpaRepository<Estudiante, Long> {
     //Obtener estudiante por dni o codigo
     @Query("SELECT e FROM Estudiante e WHERE e.codigo = :coddni OR e.dni = :coddni")
     Estudiante obtenerEstudiante(@Param("coddni") String coddni);
+
+    //Lista estudiante por apellido o nombre
+    @Query("SELECT e FROM Estudiante e WHERE e.nombre LIKE CONCAT('%',:appnombre,'%') OR e.apellido LIKE CONCAT('%',:appnombre,'%') ")
+    List<Estudiante> listarEstudiantesByAppNombre(@Param("appnombre") String appnombre);
 }

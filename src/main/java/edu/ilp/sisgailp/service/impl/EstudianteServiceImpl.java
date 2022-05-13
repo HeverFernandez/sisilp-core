@@ -41,4 +41,9 @@ public class EstudianteServiceImpl implements IEstudianteService {
     public Estudiante obtenerEstudiante(String coddni) {
         return this.estudianteDao.obtenerEstudiante(coddni);
     }
+
+    @Override
+    public List<Estudiante> listarEstudiantePorApeNombre(String apenombre) {
+        return this.estudianteDao.listarEstudiantesByAppNombre(apenombre);
+    }
 }
