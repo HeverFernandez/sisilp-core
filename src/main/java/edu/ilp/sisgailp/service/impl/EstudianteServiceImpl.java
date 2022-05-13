@@ -31,4 +31,14 @@ public class EstudianteServiceImpl implements IEstudianteService {
     public Page<Estudiante> listaEstudianteByPagina(Pageable pageable, Escuela idescuela) {
         return this.estudianteDao.listaEstudiantes(pageable,idescuela);
     }
+
+    @Override
+    public void eliminarEstudiante(Long idestudiante) {
+        this.estudianteDao.deleteById(idestudiante);
+    }
+
+    @Override
+    public Estudiante obtenerEstudiante(String coddni) {
+        return this.estudianteDao.obtenerEstudiante(coddni);
+    }
 }

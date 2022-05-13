@@ -17,4 +17,10 @@ public interface IEstudianteService {
 
     //Lista estudiantes por escuela y por páginas
     Page<Estudiante> listaEstudianteByPagina(Pageable pageable, Escuela idescuela);
+
+    //Eliminar un estudiante de la base de datos
+    void eliminarEstudiante(Long idestudiante);
+
+    //Obtener estudiante a travéz de su código ó dni
+    Estudiante obtenerEstudiante(String coddni);
 }

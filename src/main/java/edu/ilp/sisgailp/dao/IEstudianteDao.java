@@ -18,4 +18,8 @@ public interface IEstudianteDao extends JpaRepository<Estudiante, Long> {
     //Lista estudiantes por escuela por páginas
     @Query("SELECT e FROM Estudiante e WHERE e.escuela = :idescuela ")
     Page<Estudiante> listaEstudiantes(Pageable pageable, @Param("idescuela")Escuela idescuela);
+
+    //Obtener estudiante por dni o codigo
+    @Query("SELECT e FROM Estudiante e WHERE e.codigo = :coddni OR e.dni = :coddni")
+    Estudiante obtenerEstudiante(@Param("coddni") String coddni);
 }

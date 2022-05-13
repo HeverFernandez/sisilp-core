@@ -45,4 +45,15 @@ public class EstudianteController {
 
         return this.estudianteService.listaEstudianteByPagina(page,idescuela);
     }
+
+    @PostMapping("/eliminar/{id}")
+    public String eliminarEstudiante(@PathVariable Long id){
+        this.estudianteService.eliminarEstudiante(id);
+        return "Registro de estudiante eliminado correctamente";
+    }
+
+    @GetMapping("/buscar/{coddni}")
+    public Estudiante buscarEstudiante(@PathVariable String coddni){
+        return this.estudianteService.obtenerEstudiante(coddni);
+    }
 }
