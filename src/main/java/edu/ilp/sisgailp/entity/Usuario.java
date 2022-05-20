@@ -35,6 +35,12 @@ public class Usuario {
         this.idusuario = idusuario;
     }
 
+    public Usuario(String username, String contrasenia, Persona persona) {
+        this.username = username;
+        this.contrasenia = contrasenia;
+        this.persona = persona;
+    }
+
     public Usuario(Long idusuario, String username, String contrasenia, Persona persona, Set<Rol> roles) {
         this.idusuario = idusuario;
         this.username = username;
